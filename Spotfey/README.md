@@ -1,6 +1,6 @@
-# Spotifeio
+# Spotfey
 
-Spotifeio é um clone básico do Spotify, desenvolvido com Flask e JavaScript. Ele permite visualizar músicas em destaque, álbuns e reproduzir músicas.
+Spotfey é um clone básico do Spotify, desenvolvido com Flask e JavaScript. Ele permite visualizar músicas em destaque, álbuns e reproduzir músicas.
 
 ## Requisitos
 
