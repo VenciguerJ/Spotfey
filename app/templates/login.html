@@ -11,30 +11,30 @@
     
     <div class="rounded">
         <h2>LOGIN</h2>
-        <form action="post">
+        <form action="post"> <!-- colocar certo o action depois-->
             <label for="">Nome de usuário
                 <input type="text" name="form-form-login">
             </label>
             <label>Senha
-                <input type="text" name="form-login-password">
+                <input type="text" name="form-login-password" required>
             </label>
-            <input type="submit" value="Entrar">
+            <input type="submit" value="Entrar" required>
         </form>
 
     </div>
 
 
     <h3>vamos começar</h3>
-    <form action="/success" method="post">
+    <form action="/success" method="post" enctype="multipart/form-data" id="js-register-form">
 
         <label>Crie um usuário
-            <input type="text" name="form_user">
+            <input type="text" name="form_user" required>
         </label>
         <br>
         <br>
         <label>
             Informe seu e-mail
-            <input type="email" name="form_email">
+            <input type="email" name="form_email" >
         </label>
         <br>
         <br>
@@ -46,17 +46,18 @@
         <br>
         <label>
             Crie sua senha
-            <input type="password" name="form_password">
+            <input type="password" name="form_password" required>
         </label>
         <br>
         <br>
         <label>
             Confirme sua senha
-            <input type="password" name="form_password2">
+            <input type="password" name="form_password2" required>
         </label>
 
-        <input type="submit" value="Salvar Dados">
+        <input type="submit" value="Salvar Dados" id="js-confirm-register">
     </form>
+    <script src="{{ url_for('static', filename='JS/utils.js') }}"></script>
 
 </body>
 </html>

@@ -1,38 +1,41 @@
+from flask import request
+from app import app
 import mysql.connector
 
-class config:
-    DB_HOST = 'localhost'
-    DB_USER = 'root'
-    DB_PASSWORD = '1234'
-    DB_NAME = 'spotfei'
-    DB_PORT = '3306'
-
 def connect_to_database():
+    from app.config import DBConfig as db
     connection = mysql.connector.connect(
-        host=config.DB_HOST,
-        port=config.DB_PORT,
-        user=config.DB_USER,
-        password=config.DB_PASSWORD,
-        database=config.DB_NAME
+        host=db.DB_HOST,
+        user=db.DB_USER,
+        password=db.DB_PASSWORD,
+        database=db.DB_NAME
     )
     return connection
+
+
+#Funções gerais
+
+def valida_arquivo(filename):
+    from app.config import Config
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in Config.ALLOWED_EXTENSIONS
+
+#funções de usuário
 
 def cadastra_user(username, senha, email, foto_perfil=None):
     connection = connect_to_database()
     cursor = connection.cursor()
     try:
         if foto_perfil:
-            cursor.execute(f"insert into users (username, senha, foto_perfil, email) values ('{username}', '{senha}', '{foto_perfil}', '{email}')")
+            cursor.execute("insert into users (username, senha,foto_perfil, email) values (%s, %s, %s, %s)", (username, senha, foto_perfil, email))
         else:
-            cursor.execute(f"insert into users (username, senha, email) values ('{username}', '{senha}', '{email}')")
+            cursor.execute("insert into users (username, senha, email) values (%s, %s, %s)", (username, senha, email))
     
         connection.commit()
-     
+
         resultado = 'Usuário cadastrado!'
-      
-        
-    except Exception as ex:
-        resultado = f'Erro no cadastro do usuário: {ex}'
+
+    except Exception as e:
+        resultado = f'Erro no cadastro do usuário: {e}'
     finally:
         cursor.close()
         connection.close()

@@ -1,0 +1,15 @@
+html{
+    background-color: rgb(72, 99, 32);
+}
+
+#login{
+    content: "Antes";
+    display: block;
+    position: absolute;
+    right: 0;
+    width: 30%;
+    height: 650px;
+    margin: 40px 20px 0px 0px;
+    background-color: rgb(41, 41, 41);
+    border-radius: 20px;
+}
