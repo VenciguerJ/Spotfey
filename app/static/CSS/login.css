@@ -1,20 +1,12 @@
 body{
     background-image: url(../assets/background.png);
     background-color: black;
-    background-size: cover;
+    background-size:cover;
     font-family: sans-serif;
+    background-repeat: no-repeat;
 }
 
-body::before{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.);
-    z-index: 1;
-}
+
 
 h2, h3, p, label, input{
     color: rgba(255, 255, 255, 1);
@@ -26,15 +18,40 @@ h2, h3, p, label, input{
 }
 
 .default-div{
-    background-color: #00213C;
-    border-radius: 10px;
-    margin: auto;
     display: block;
-    margin-left: auto;
-    margin-top: 15%;
-}
-#login-div{
+    margin: auto;
+    border-radius: 10px;
+    background-color: #00213C;
 
+}
+
+#login-div{
+    width: 25%;
     height: 300px;
-    width: 400px;
+    margin-top: 300px;
+    position: relative;
+}
+
+#login-div h2{
+    display: block
+    ;
+    margin: 10px;
+}
+
+#login-div form{
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+    margin: auto;
+    font-size: 20px;
+}
+
+#login-div form input{
+    display: block;
+}
+
+.submit-button{
+    width: 100%;
 }
