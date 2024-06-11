@@ -13,11 +13,6 @@ def connect_to_database():
     return connection
 
 
-#Funções gerais
-
-def valida_arquivo(filename):
-    from app.config import Config
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in Config.ALLOWED_EXTENSIONS
 
 #funções de usuário
 
@@ -41,3 +36,21 @@ def cadastra_user(username, senha, email, foto_perfil=None):
         connection.close()
 
     return resultado
+
+def verifica_usuario_existente(user):
+    existente = None
+    query = f"select username from user where username = '{user}'"
+    connection = connect_to_database()
+
+    try:
+        cursor = connection.cursor
+        cursor.execute(query)
+        resultados = cursor.fetchall()
+        for user in resultados:
+            if user:
+                existente = True
+            else: existente = False
+        return existente
+    except Exception:
+        existente = f'Erro ao validar usuário: {Exception}'
+        return existente

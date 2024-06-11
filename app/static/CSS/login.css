@@ -1,57 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@300;500;700;800&display=swap');
+
+
 body{
-    background-image: url(../assets/background.png);
-    background-color: black;
-    background-size:cover;
-    font-family: sans-serif;
-    background-repeat: no-repeat;
+    background-color: #1A2130;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    
 }
 
-
-
-h2, h3, p, label, input{
-    color: rgba(255, 255, 255, 1);
+h1, h2, h3, label{
+    color: #F1F8E8;
+    font-family:  'Mukta', sans-serif;
 }
 
 .hidden{
+    position: fixed;
+    top: 0;
     opacity: 0;
-    float: center;
 }
 
-.default-div{
-    display: block;
-    margin: auto;
-    border-radius: 10px;
-    background-color: #00213C;
-
-}
-
-#login-div{
-    width: 25%;
-    height: 300px;
-    margin-top: 300px;
-    position: relative;
-}
-
-#login-div h2{
-    display: block
-    ;
-    margin: 10px;
-}
-
-#login-div form{
-    position: absolute;
-    bottom: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    display: block;
-    margin: auto;
-    font-size: 20px;
-}
-
-#login-div form input{
-    display: block;
-}
-
-.submit-button{
-    width: 100%;
-}

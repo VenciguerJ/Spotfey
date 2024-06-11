@@ -5,28 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Spotfey</title>
     <link rel="stylesheet" href="../static/CSS/login.css">
-    
+</head>
 <body>
-    
-    <div class="default-div" id="login-div">
-        <h2 class="sla">LOGIN</h2>
-        <!-- <img src="../static/assets/pirate.png" alt="pirate-icon"> -->
-        <form action="/success" method="post">
-            <label for="">Nome de usuário
-                <input type="text" name="form-form-login">
-            </label>
-            <label>Senha
-                <input type="text" name="form-login-password" required>
-            </label>
-            <input type="submit" value="Entrar" class="submit-button" class="submit-button" required>
-        </form>
+    <div id="content-div">
+        <h1>Bem vindo ao  Spotfey</h1>
+        <p>Um projeto de <strong><a href="https://www.linkedin.com/in/vencigueri/" target="_blank">Jean Vencigueri</a></strong> para te fazer aproveitar e desfrutar de músicas do seu próprio estilo e gosto</p>
+        <img src="../static/assets/Music.gif" alt="" srcset="">
     </div>
-
-    <div class="hidden">
-        <h3>vamos começar</h3>
+    <div id="form-div" class="">
+        <div class="default-div hiddena" id="login-div">
+            <h2 class="sla">Login</h2>
+          
+            <form action="/success" method="post">
+                <label for="">Nome de usuário</label>
+                <input type="text" name="form-form-login" placeholder="Digite seu nome de usuário">
+                
+                <label>Senha</label>
+                <input type="text" name="form-login-password" placeholder="Digite sua senha" required>
+                
+                <input type="submit" value="Entrar" class="default-button" class="submit-button" required>
+            </form>
+        </div>
+    </div>
+    <div class="hidden default-div">
+        <h2>vamos começar</h2>
         <form action="/success" method="post" enctype="multipart/form-data" id="js-register-form">
     
-            <label>Crie um usuário
+            <label>
+                Crie um usuário
                 <input type="text" name="form_user" required>
             </label>
             <br>
@@ -38,7 +44,7 @@
             <br>
             <br>
             <label>
-                POR FAVOR NÃO USE ISSO AGORA, coloque uma foto no seu perfil
+                Coloque uma foto no seu perfil
                 <input type="file" name="form_profile_picture">
             </label>
             <br>
@@ -57,6 +63,8 @@
             <input type="submit" value="Salvar Dados" id="js-confirm-register">
         </form>
     </div>
+    </div>
+    
     <script src="{{ url_for('static', filename='JS/utils.js') }}"></script>
 
 </body>
