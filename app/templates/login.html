@@ -10,15 +10,21 @@
     <div id="content-div">
         <h1>Bem vindo ao  Spotfey</h1>
         <p>Um projeto de <strong><a href="https://www.linkedin.com/in/vencigueri/" target="_blank">Jean Vencigueri</a></strong> para te fazer aproveitar e desfrutar de músicas do seu próprio estilo e gosto</p>
-        <img src="../static/assets/Music.gif" alt="" srcset="">
+        <img src="../static/assets/Music.gif" alt="imagem de pessoa escutando músicas">
     </div>
-    <div id="form-div" class="">
-        <div class="default-div hiddena" id="login-div">
+    <div id="form-div">
+        
+        <div class="switch-visibility hidden">
+            <span>Não possui <strong>login?</strong></span>
+            <button class="switch-button js-switch-button">Clique aqui para Se registrar</button>
+        </div>
+        <div class="default-div hidden" id="login-div">
+        
             <h2 class="sla">Login</h2>
-          
+        
             <form action="/success" method="post">
                 <label for="">Nome de usuário</label>
-                <input type="text" name="form-form-login" placeholder="Digite seu nome de usuário">
+                <input type="text" name="form-form-login" placeholder="Digite seu nome de usuário" required>
                 
                 <label>Senha</label>
                 <input type="text" name="form-login-password" placeholder="Digite sua senha" required>
@@ -26,46 +32,51 @@
                 <input type="submit" value="Entrar" class="default-button" class="submit-button" required>
             </form>
         </div>
+
+        <div class="switch-visibility">
+            <span>Já possui um <strong>login?</strong></span>
+            <button class="switch-button js-switch-button">Clique aqui para Entrar</button>
+        </div>
+        <div class="default-div" id="register-div">
+            <h2>Vamos começar</h2>
+            <form action="/success" method="post" enctype="multipart/form-data" id="js-register-form">
+        
+                <label>
+                    Crie um usuário
+                </label>    
+                <input type="text" name="form_user" placeholder="usuário" required>
+                
+                <label>
+                    Informe seu e-mail
+                </label>   
+                <input type="email" name="form_email" placeholder="e-mail">
+                
+                <!-- <label>
+                    Coloque uma foto no seu perfil
+                </label>               
+                <input type="file" name="form_profile_picture" class="input-file"> -->
+
+                <label for="file-upload" class="label-file">Escolher arquivo</label>
+                <input id="file-upload" class="input-file" type="file" onchange="updateFileName(this)">
+                <span id="file-name"></span>
+
+                <label>
+                    Crie sua senha
+                </label>
+                <input type="password" name="form_password" placeholder="senha" required>
+
+                <label>
+                    Confirme sua senha
+                </label>
+                <input type="password" name="form_password2" placeholder="confirmação" required>
+        
+                <input type="submit" value="Salvar Dados" class="default-button" id="js-confirm-register">
+            </form>
+        </div>
     </div>
-    <div class="hidden default-div">
-        <h2>vamos começar</h2>
-        <form action="/success" method="post" enctype="multipart/form-data" id="js-register-form">
     
-            <label>
-                Crie um usuário
-                <input type="text" name="form_user" required>
-            </label>
-            <br>
-            <br>
-            <label>
-                Informe seu e-mail
-                <input type="email" name="form_email" >
-            </label>
-            <br>
-            <br>
-            <label>
-                Coloque uma foto no seu perfil
-                <input type="file" name="form_profile_picture">
-            </label>
-            <br>
-            <br>
-            <label>
-                Crie sua senha
-                <input type="password" name="form_password" required>
-            </label>
-            <br>
-            <br>
-            <label>
-                Confirme sua senha
-                <input type="password" name="form_password2" required>
-            </label>
-    
-            <input type="submit" value="Salvar Dados" id="js-confirm-register">
-        </form>
-    </div>
-    </div>
-    
-    <script src="{{ url_for('static', filename='JS/utils.js') }}"></script>
+    <!-- <script src="{{ url_for('static', filename='JS/utils.js') }}"></script> -->
+    <script src="../static/JS/utils.js"></script>
 
 </body>
 </html>
