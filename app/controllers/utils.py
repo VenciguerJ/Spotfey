@@ -7,10 +7,19 @@ def verifica_arquivo_dupicado(nomearquivo, diretorio):
 
             
 def valida_arquivo(filename):
+<<<<<<< HEAD
     from app.config import Config
+=======
+    from app.controllers.config import Config
+>>>>>>> 5b6e02677efb2eb2d84964daff6ebf6d266cef28
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in Config.ALLOWED_EXTENSIONS
 
 class ConstUsers:
     MAX_CARACTERES_USERNAME = 20
     MAX_CARACTERES_SENHA = 20
+<<<<<<< HEAD
     MAX_CARACTERES_EMAIL = 100
+=======
+    MAX_CARACTERES_EMAIL = 100
+    NAME_PROFILE_PICTURE = 'profile'
+>>>>>>> 5b6e02677efb2eb2d84964daff6ebf6d266cef28
