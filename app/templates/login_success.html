@@ -1,34 +1,19 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Successo - Spotfey</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='CSS/utils.css')}}">
 </head>
 <body>
-    <h1>usuário criado com Successo</h1>
-    <a href="/">Voltar ao menu</a>
+    <img src="../static/assets/Compose music.gif" alt="Alternative image" id="content-image">
+    <div id="center-div">
+        <h1>{{ msg }}</h1>
+        <img src="{{profiledir}}" alt="Profile Picture">
+        <p>Bem vindo ao Spotfey, {{nome}}!</p>        
+    </div>
 
-    <p>{{ msg }}</p>
-    <p>caminho: {{ caminho }}</p>
-
+    <a href="/register" class="link-buttom">Voltar ao Login</a>
 </body>
-=======
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Successo - Spotfey</title>
-</head>
-<body>
-    <h1>usuário criado com Successo</h1>
-    <a href="/register">Voltar ao menu</a>
-
-    <p>{{ msg }}</p>
-    <p>caminho: {{ sql }}</p>
-
-</body>
->>>>>>> 5b6e02677efb2eb2d84964daff6ebf6d266cef28
 </html>

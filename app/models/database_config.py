@@ -3,11 +3,7 @@ from app import app
 import mysql.connector
 
 def connect_to_database():
-<<<<<<< HEAD
-    from app.config import DBConfig as db
-=======
     from app.controllers.config import DBConfig as db
->>>>>>> 5b6e02677efb2eb2d84964daff6ebf6d266cef28
     connection = mysql.connector.connect(
         host=db.DB_HOST,
         user=db.DB_USER,
@@ -43,23 +39,6 @@ def cadastra_user(username, senha, email, foto_perfil=None):
 
 def verifica_usuario_existente(user):
     existente = None
-<<<<<<< HEAD
-    query = f"select username from user where username = '{user}'"
-    connection = connect_to_database()
-
-    try:
-        cursor = connection.cursor
-        cursor.execute(query)
-        resultados = cursor.fetchall()
-        for user in resultados:
-            if user:
-                existente = True
-            else: existente = False
-        return existente
-    except Exception:
-        existente = f'Erro ao validar usuário: {Exception}'
-        return existente
-=======
     query = "select username from users where username = %s"
     connection = connect_to_database()
 
@@ -98,4 +77,3 @@ def busca_senha(user):
     finally:
         cursor.close()
         conn.close()
->>>>>>> 5b6e02677efb2eb2d84964daff6ebf6d266cef28
