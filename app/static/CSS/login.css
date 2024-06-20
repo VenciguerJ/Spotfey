@@ -38,10 +38,13 @@ label{
 
 .hidden{
     position: fixed;
-    top: 0;
     opacity: 0;
     visibility: hidden;
     z-index: 0;
+    height: 0;
+    margin: 0;
+    overflow: hidden;
+    transition: .3s ease-in-out
 }
 
 #content-div, #form-div{
@@ -104,6 +107,7 @@ label{
     width: 80%;
     margin: auto;
     padding-bottom: 10px;
+    overflow: hidden !important;
 }
 
 .default-div input{
@@ -194,4 +198,13 @@ label{
     font-size: 16px;
     color: #F1F8E8;
     font-weight: 600;
+}
+
+#form-div .switch-visibility, #form-div .default-div{
+    transition: .3s ease-in-out;
+}
+
+.alert-danger{
+    transition: .3s ease-in-out;
+    color: rgb(218, 78, 68);
 }
