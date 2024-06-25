@@ -13,6 +13,7 @@ def index():
 def register():
     from app.models.database_config import cadastra_user, verifica_usuario_existente
     from app.controllers.utils import valida_arquivo, verifica_arquivo_dupicado, ConstUsers
+    from app.controllers.config import Config as config
 
 
 
@@ -24,7 +25,6 @@ def register():
         password2 = request.form['form_password2']
 
         # Validação de usuário
-        print(verifica_usuario_existente(user))
         if verifica_usuario_existente(user):
             flash('Usuário já cadastrado')
             return redirect(url_for('register'))
@@ -48,24 +48,33 @@ def register():
             definitivePassword = password
 
         # Validação do arquivo
-        CaminhoArquivo = None
+        caminhoArquivo = None
         if fotoPerfil:
             nomeArquivo = secure_filename('profile' + os.path.splitext(fotoPerfil.filename)[1])
             if valida_arquivo(nomeArquivo):
-                CaminhoArquivo = os.path.join(config.Config.UPLOAD_IMAGES, user)
-                if not os.path.exists(CaminhoArquivo):
-                    os.makedirs(CaminhoArquivo)
+                caminhoArquivo = os.path.join(config.UPLOAD_IMAGES, user)
+                if not os.path.exists(caminhoArquivo):
+                    os.makedirs(caminhoArquivo)
+
+                if verifica_arquivo_dupicado(nomeArquivo, caminhoArquivo):
+                    flash('Não foi possível salvar arquivo')
+                    return redirect(url_for('register'))
                 else:
-                    verifica_arquivo_dupicado(nomeArquivo, CaminhoArquivo)
-                fotoPerfil.save(os.path.join(CaminhoArquivo, nomeArquivo))
+                    fotoPerfil.save(os.path.join(caminhoArquivo, nomeArquivo))
+                    caminhoArquivo = os.path.join(caminhoArquivo, nomeArquivo)
+                    profiledir = f'uploads/images/{user}/{nomeArquivo}'
             else:
                 flash('Extensão de arquivo não suportada')
                 return redirect(url_for('register'))
+        else:
+            caminhoArquivo = str(config.DEFAULT_PROFILE_IMAGE).replace(r'\\', r"/")
+            profiledir = config.HTML_SOURCE_IMAGE
 
         # Se todas as validações passarem
-        msg = cadastra_user(user, definitivePassword, email, CaminhoArquivo)
+        msg = cadastra_user(user, definitivePassword, email, caminhoArquivo)
         msg = str(msg)
-        return render_template('login_success.html', msg=msg, sql=verifica_usuario_existente(user))
+        print(caminhoArquivo)
+        return render_template('login_success.html', msg=msg, profiledir=profiledir, nome=user)
     
     return render_template('login.html')
       

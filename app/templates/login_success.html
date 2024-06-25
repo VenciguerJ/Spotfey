@@ -10,10 +10,9 @@
     <img src="../static/assets/Compose music.gif" alt="Alternative image" id="content-image">
     <div id="center-div">
         <h1>{{ msg }}</h1>
-        <img src="{{profiledir}}" alt="Profile Picture">
+        <img src="{{ url_for('static', filename=profiledir) }}" alt="Profile-Picture" class="profile-image">
         <p>Bem vindo ao Spotfey, {{nome}}!</p>        
     </div>
-
     <a href="/register" class="link-buttom">Voltar ao Login</a>
 </body>
 </html>
