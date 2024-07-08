@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Spotfey</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='CSS/utils.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='CSS/login.css')}}">
 </head>
 <body>
@@ -12,8 +13,6 @@
         <h1>Bem vindo ao  Spotfey</h1>
         <p>Um projeto de <strong><a href="https://www.linkedin.com/in/vencigueri/" target="_blank">Jean Vencigueri</a></strong> para te fazer aproveitar e desfrutar de músicas do seu próprio estilo e gosto</p>
         <img src="../static/assets/Music.gif" alt="imagem de pessoa escutando músicas">
-
-
     </div> 
     <div id="form-div">
         <div>
@@ -85,7 +84,5 @@
     </div>
     
     <script src="{{ url_for('static', filename='JS/utils.js') }}"></script>
-    <!-- <script src="../static/JS/utils.js"></script> -->
-
 </body>
 </html>

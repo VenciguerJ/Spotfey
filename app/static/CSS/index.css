@@ -1,0 +1,43 @@
+body{
+    /* background-color: #222831; */
+    background: linear-gradient(to bottom right, #222831 90%, rgba(6, 134, 92, 0.651));
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+    color: #F1F8E8;
+    font-family:  'Mukta', sans-serif;
+
+    
+}
+
+h1, h2, h3, p{
+    color: #F1F8E8!important;
+    font-family:  'Mukta', sans-serif;
+    margin: 0;
+}
+
+a{
+    color: aquamarine;
+}
+
+#first-view{
+    display: flex;
+}
+
+#first-content{
+    border: solid wheat;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#first-content img{
+    width: 50%;
+}
+

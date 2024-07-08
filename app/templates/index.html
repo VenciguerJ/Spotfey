@@ -6,15 +6,56 @@
     <title>Home - Spotfey</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <link rel="stylesheet" href="{{url_for('static', filename='CSS/utils.css')}}"> 
+    <link rel="stylesheet" href="{{url_for('static', filename='CSS/style.css')}}">
 </head>
 <body>
-    <a href="{{url_for('register')}}">Entrar</a>
-
+    <nav>
+        <i class="fa-solid fa-bars"></i>
+        <ul>
+            <li><a href="{{url_for('register')}}">Entrar</a></li>
+            <li><a href="#">Lançar musica</a></li>
+        </ul>
+    </nav>
     <header>
-        <div class="header-last-music">
+        <h1>Spotfeys</h1>
+        <!-- colocar uma barra de pesquisa -->    
+    </header>
+    <!-- player -->
+    <div class="music-simple-div hidden">
+        <div class="music-simple-div-info">
+            <img src="../static/assets/imagem de música.png" alt="img da musica">
+            <h3>Nome da musica</h3>
+        </div>
+        <div class="music-simple-div-player">
+            <ul>
+                <li><i class="fa-solid fa-backward-step"></i></i></li>
+                <li><i class="fa-solid fa-circle-play"></i></li>
+                <li><i class="fa-solid fa-circle-pause"></i></li>   
+                <li><i class="fa-solid fa-forward-step"></i></li>
+            </ul>
+            <input type="range" class="music-bar">
+        </div>
+        <div class="music-simple-div-config">
+            <button class="close-player">fechar player</button>
+            <i class="fa-solid fa-volume-off hidden"></i>
+            <i class="fa-solid fa-volume-low"></i>
+            <i class="fa-solid fa-volume-high hidden"></i>
+            <input type="range" name="#">            
+        </div>
+    </div>
+    <main>
+        <div id="header-last-music">
             <h1>Ultimo lançamento</h1>
-            <!-- colocar a foto aqui -->
-            <!-- string nome da musica e do autor serão concatenados com a string no python -->
+            <div id="header-last-music-info">
+                <img src="../static/assets/imagem de música.png">
+                <div>
+                    <h2>Titulo da muisca</h2>
+                    <h3>Autor</h3>
+                </div>
+            </div>
+            <i class="fa-solid fa-circle-play js-player"></i>
         </div>
         <div class="header-playlists">
             <!-- Adicionaer os caminhos das statics -->
@@ -22,14 +63,18 @@
             <div class="header-playlist-card"></div>
             <div class="header-playlist-card"></div>
         </div>
-    </header>
-    
-    <main>
         <h3>Musicas</h3>
     </main>
-
     <footer>
-        <p>Direitos reservados de <a href="#">Jean Vencigueri</a></p>
+        <h2>Spotfey's Project</h2>
+        <ul>
+            <li>Direitos reservados de <a href="https://www.linkedin.com/in/vencigueri/" target="_blank">Jean Vencigueri</a></li>
+            <li>E-mail: <a href="mailto:jeanpedrosilva24@gmail.com">jeanpedrosilva24@gmail.com</a></li>
+            <li>GitHub: <a href="https://github.com/VenciguerJ">https://github.com/VenciguerJ</a></li>
+        </ul>
+        <a class="default-button" href="../static/assets/C.V_Jean_Vencigueri.pdf" download="C.V_Jean_Vencigueri.pdf">Baixar Currículo</a>
     </footer>
+    
+    <script src="{{url_for('static', filename='JS/utils.js')}}"></script>
 </body>
 </html>
