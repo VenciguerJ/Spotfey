@@ -1,6 +1,7 @@
 from flask import request
 from app import app
 import mysql.connector
+from app.controllers.default import User 
 
 def connect_to_database():
     from app.controllers.config import DBConfig as db
@@ -11,8 +12,6 @@ def connect_to_database():
         database=db.DB_NAME
     )
     return connection
-
-
 
 #funções de usuário
 
@@ -59,7 +58,6 @@ def verifica_usuario_existente(user):
 
     return existente
     
-
 def busca_senha(user):
     query = "select senha from users where username = %s"
 
@@ -77,3 +75,38 @@ def busca_senha(user):
     finally:
         cursor.close()
         conn.close()
+
+def found_user(ID):
+    query = "select * from users where id = %s"
+
+    connection = connect_to_database()
+    try:
+        cursor = connection.cursor()
+        cursor.execute(query, (ID,))
+        resultado = cursor.fetchone()
+        if resultado:
+            return User(resultado[0], resultado[1], resultado[2], resultado[3], resultado[4])
+        else:
+            return None
+    except Exception as e:
+        return f'Erro ao validar usuário: {str(e)}'
+    finally:
+        cursor.close()
+        connection.close()
+
+def get_user_ID(user):
+    query = "select id from users where username = %s"
+    connection = connect_to_database()
+    try:
+        cursor = connection.cursor()
+        cursor.execute(query, (user,))
+        resultado = cursor.fetchone()
+        if resultado:
+            return resultado[0]
+        else:
+            return None
+    except Exception as e:
+        return f'Erro ao validar usuário: {str(e)}'
+    finally:
+        cursor.close()
+        connection.close()

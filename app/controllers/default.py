@@ -1,16 +1,30 @@
 from flask import render_template, request, redirect, url_for, flash
-from werkzeug.utils import secure_filename
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from app import app
-import os
+from werkzeug.utils import secure_filename
+from app.controllers.config import User
 
-from app.controllers import config
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = 'login'
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
+
+#ROTAS
 @app.route("/")
 def index():
-    return render_template('index.html')
+    if current_user.is_authenticated:
+        current_username = current_user.username
+        return render_template('index.html', current_username = current_username)    
+    else:
+        return render_template('index.html')
+        
 
 @app.route("/register", methods=['GET', 'POST']) #contém os formulários de login e registro e redireciona o registro para a mesma pagina para logar
 def register():
+    import os
     from app.models.database_config import cadastra_user, verifica_usuario_existente
     from app.controllers.utils import valida_arquivo, verifica_arquivo_dupicado, ConstUsers
     from app.controllers.config import Config as config
@@ -33,8 +47,11 @@ def register():
             return redirect(url_for('register'))
 
         # Validação de email
+        if  len(email) <= 0:
+            flash('Insira um e-mail!')
+            return redirect(url_for('register'))
         if len(email) > ConstUsers.MAX_CARACTERES_EMAIL:
-            flash('Email muito grande')
+            flash(f'Email muito grande, máximo suportado: {ConstUsers.MAX_CARACTERES_EMAIL}')
             return redirect(url_for('register'))
 
         # Validação de senha
@@ -73,31 +90,35 @@ def register():
         # Se todas as validações passarem
         msg = cadastra_user(user, definitivePassword, email, caminhoArquivo)
         msg = str(msg)
-        print(caminhoArquivo)
         return render_template('login_success.html', msg=msg, profiledir=profiledir, nome=user)
     
     return render_template('login.html')
       
-@app.route("/login", methods=['POST'])
+@app.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        from app.models.database_config import busca_senha, verifica_usuario_existente
-
         loginUser = request.form['user-form-login']
         loginPassword = request.form['password-form-login']
-        
-        if verifica_usuario_existente(loginUser):
-            senhaDoBanco = busca_senha(loginUser)
-            senhaDoBanco = str(senhaDoBanco)
-            if senhaDoBanco != loginPassword:
-                flash('Senha Incorreta, tente novamente')
-                return redirect(url_for('register'))
+        user = User.authenticate(loginUser, loginPassword)
+        if user:
+            login_user(user)
+            return redirect(url_for('index'))
         else:
-            flash('Usuário não existe, troque para o menu de registro')
-            return redirect(url_for('register'))  
-    
-    return redirect(url_for('index'))
+            flash('Credenciais inválidas, verifique')
+            return redirect(url_for('login'))     
+        
+    return render_template('login.html')
 
 @app.route("/success")
-def success(): 
+def success():  
     return render_template('login_success.html')
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
+
+@app.route("/innermusic")
+@login_required
+def innermusic():
+    return render_template('inner_music.html')

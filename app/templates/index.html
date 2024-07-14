@@ -9,19 +9,22 @@
 
     <link rel="stylesheet" href="{{url_for('static', filename='CSS/utils.css')}}"> 
     <link rel="stylesheet" href="{{url_for('static', filename='CSS/style.css')}}">
+    <link rel="shortcut icon" type="imagex/png" href="../static/assets/imagem de música.ico">
 </head>
 <body>
     <nav>
         <i class="fa-solid fa-bars"></i>
         <ul>
             <li><a href="{{url_for('register')}}">Entrar</a></li>
-            <li><a href="#">Lançar musica</a></li>
+            <li><a href="{{url_for('innermusic')}}">Lançar musica</a></li>
+            <li><a href="{{url_for('logout')}}">Sair</a></li>
         </ul>
     </nav>
     <header>
         <h1>Spotfeys</h1>
         <!-- colocar uma barra de pesquisa -->    
     </header>
+        <h3>{{ current_username }}</h3>
     <!-- player -->
     <div class="music-simple-div hidden">
         <div class="music-simple-div-info">
