@@ -118,7 +118,11 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
-@app.route("/innermusic")
+@app.route("/innermusic", methods=['GET', 'POST'])
 @login_required
 def innermusic():
+    if request.method == 'POST':
+        nomeMusica = request.form['form-nome-musica']
+        arquivoMusica = request.form['form-arquivo-musica']
+        fotoMusica = request.form['form-imagem-musica']
     return render_template('inner_music.html')

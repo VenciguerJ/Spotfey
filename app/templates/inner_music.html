@@ -4,9 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="imagex/png" href="../static/assets/imagem de música.ico">
+    <link rel="stylesheet" href="{{url_for('static', filename='CSS/utils.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='CSS/innermusic.css')}}">
     <title>Cadastrar uma nova música</title>
 </head>
 <body>
-    <p>caba ta logado</p>
+    <header>
+        <h1>Postar uma nova música!</h1>
+        <a href="{{url_for('index')}}" class="default-button">Voltar para o Menu</a>
+    </header>
+    
+    <main>
+        <img src="../static/assets/otaku.gif" alt="Imagem de mulher ">
+        <form action="{{url_for('index')}}" method="post" enctype="multipart/form-data" id="center-div">
+            <label for="Nome">Coloque um nome nesta musica!</label>
+            <input type="text" id="Nome" name="form-nome-musica" placeholder="Digite aqui o nome da música">
+            
+            <label for="file-upload" class="label-file">Selecione a música</label>        
+            <input type="file" name="form-arquivo-musica" id="file-upload" class="hidden">
+            <span></span>
+
+            <label for="image-music" class="label-file">Coloque uma foto nessa obra de arte</label>
+            <input type="file" name="form-imagem-musica" class="hidden" id="image-music">
+
+            <label>pronto para lançar mais um hit?</label>
+            <input type="submit" value="SIM!" class="default-button">
+
+        </form>
+    </main>
+    <script src="{{url_for('static', filename='JS/Utils.js')}}"></script>
 </body>
 </html>

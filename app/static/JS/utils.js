@@ -6,10 +6,10 @@ $switchVisibility = document.querySelectorAll('.switch-visibility');
 $form = document.querySelectorAll('.default-div');
 
 //DOM - Index.html
-$playerButton = document.querySelectorAll('.js-player');
-$player = document.querySelector('.music-simple-div');
-$closeplayer = document.querySelector('.close-player')
-
+$showPlayer = document.querySelectorAll('.js-player');
+$playerDiv = document.querySelector('.music-simple-div');
+$closeplayer = document.querySelector('.close-player');
+$player = document.querySelectorAll('.js-start-stop');
 //Events
 //login
 if($fileUpload){
@@ -21,12 +21,18 @@ for (let i = 0; i < $switchButton.length; i++){
 }
 
 //index
-for(let i=0 ; i< $playerButton.length;i++){
-    $playerButton[i].addEventListener('click', show_player)
+for(let i=0 ; i< $showPlayer.length;i++){
+    $showPlayer[i].addEventListener('click', show_player)
 }
+
 $closeplayer.addEventListener('click', function(){
-    $player.classList.add('hidden');
-})
+    $playerDiv.classList.add('hidden');
+});
+
+
+for(let i=0;i<$player.length;i++){
+    $player[i].addEventListener('click', play_pause)
+}
 
 //functions
 function updateFileName(e) {
@@ -36,9 +42,24 @@ function updateFileName(e) {
 }
 
 function define_hidden(){
-    if(($switchVisibility.length >= 0) && ($form.length >= 0)){
+    if(($switchVisibility.length > 0) && ($form.length > 0)){
         $switchVisibility[1].classList.add('hidden')
         $form[1].classList.add('hidden')
+    }
+
+    if($player.length > 0 && $player){
+        $player[0].classList.add('hidden')
+    }
+}
+
+function play_pause(){
+    for(let i=0;i<$player.length;i++){
+        if(!($player[i].classList.contains('hidden'))){
+            $player[i].classList.add('hidden')
+        }
+        else{
+            $player[i].classList.remove('hidden')
+        }
     }
 }
 
@@ -59,5 +80,5 @@ function switch_form(){
 //funções do player
 
 function show_player(){
-    $player.classList.remove('hidden')
+    $playerDiv.classList.remove('hidden')
 }

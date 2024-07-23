@@ -24,16 +24,15 @@ insert into users (username, senha,foto_perfil, email) values ('teste2', 'testes
 -- musicas
 
 use spotfei;
-create table musics(
-id int not null auto_increment,
-nome varchar(100) not null,
-id_criador int not null,
-foto_musica varchar(100),
-data_criacao datetime not null,
-caminho_arquivo varchar(100),
-
-primary key (id),
-foreign key(id_criador) references users(id)
-)
+create table musicas(
+    id int not null auto_increment,
+    nome varchar(100) not null,
+    id_criador int not null,
+    foto_musica varchar(100),
+    data_criacao datetime not null,
+    caminho_arquivo varchar(100),
+    primary key(id),
+    foreign key(id_criador) references users(id)
+);
 
 select * from musics
