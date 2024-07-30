@@ -1,6 +1,8 @@
+                        
+//DOM - Login.html  
 
-//DOM - Login.html
 $fileUpload = document.querySelector("#file-upload");
+$imageMusicUpload = document.querySelector("#image-music")
 $switchButton = document.querySelectorAll('.switch-button');
 $switchVisibility = document.querySelectorAll('.switch-visibility');
 $form = document.querySelectorAll('.default-div');
@@ -12,6 +14,9 @@ $closeplayer = document.querySelector('.close-player');
 $player = document.querySelectorAll('.js-start-stop');
 //Events
 //login
+if($imageMusicUpload){
+    $imageMusicUpload.addEventListener('change', updateFileName);
+}
 if($fileUpload){
     $fileUpload.addEventListener('change', updateFileName);
 }
@@ -25,10 +30,11 @@ for(let i=0 ; i< $showPlayer.length;i++){
     $showPlayer[i].addEventListener('click', show_player)
 }
 
-$closeplayer.addEventListener('click', function(){
-    $playerDiv.classList.add('hidden');
-});
-
+if($closeplayer){
+    $closeplayer.addEventListener('click', function(){
+        $playerDiv.classList.add('hidden');
+    });
+}
 
 for(let i=0;i<$player.length;i++){
     $player[i].addEventListener('click', play_pause)
@@ -38,7 +44,14 @@ for(let i=0;i<$player.length;i++){
 function updateFileName(e) {
     var input = e.target;
     var fileName = input.files[0] ? input.files[0].name : '';
-    document.getElementById('file-name').textContent = fileName;
+
+    
+    if(input == $fileUpload){
+        document.getElementById('file-name').textContent = fileName;
+    }
+    if(input == $imageMusicUpload){
+        document.getElementById('image-name').textContent = fileName
+    }
 }
 
 function define_hidden(){

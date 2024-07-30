@@ -8,6 +8,7 @@ class Config:
     DEFAULT_PROFILE_IMAGE = os.path.join('app', 'static', 'assets', 'default-image.jpg'),
     HTML_SOURCE_IMAGE = 'assets/default-image.jpg'
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+    ALLOWED_MUSIC_EXTENSIONS = {'mp4', 'MP3', 'mp3'}
 
 class DBConfig:
     DB_HOST = 'localhost'

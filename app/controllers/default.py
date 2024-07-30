@@ -3,6 +3,7 @@ from flask_login import LoginManager, login_user, logout_user, login_required, c
 from app import app
 from werkzeug.utils import secure_filename
 from app.controllers.config import User
+import os
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -24,7 +25,6 @@ def index():
 
 @app.route("/register", methods=['GET', 'POST']) #contém os formulários de login e registro e redireciona o registro para a mesma pagina para logar
 def register():
-    import os
     from app.models.database_config import cadastra_user, verifica_usuario_existente
     from app.controllers.utils import valida_arquivo, verifica_arquivo_dupicado, ConstUsers
     from app.controllers.config import Config as config
@@ -121,8 +121,56 @@ def logout():
 @app.route("/innermusic", methods=['GET', 'POST'])
 @login_required
 def innermusic():
+    from app.controllers import config, utils
+    from datetime import date
+    from app.models.database_config import add_music
+
     if request.method == 'POST':
+        # salvando as informações do form
         nomeMusica = request.form['form-nome-musica']
-        arquivoMusica = request.form['form-arquivo-musica']
-        fotoMusica = request.form['form-imagem-musica']
+        arquivoMusica = request.files['form-arquivo-musica']
+        fotoMusica = request.files['form-imagem-musica']
+
+        # validando as informaçoes de texto
+        if len(nomeMusica) > utils.ConstContent.MAX_CARACTERES_TEXTOS:
+            flash(f'O nome "{nomeMusica}" muito grande, máximo de até 100 caracteres')
+            return redirect(url_for('innermusic'))
+        
+        #validação dos arquivos
+
+        if not os.path.exists(os.path.join(config.Config.UPLOAD_MUSICS, current_user.username)):
+            os.mkdir(os.path.join(config.Config.UPLOAD_MUSICS, current_user.username))
+        
+        nomeArquivoMusica = secure_filename(nomeMusica + os.path.splitext(arquivoMusica.filename)[1])
+
+        if(utils.valida_arquivo_musica(nomeArquivoMusica)):
+            caminhoArquivoMusica = os.path.join(config.Config.UPLOAD_MUSICS, current_user.username)
+
+            utils.verifica_arquivo_dupicado(nomeArquivoMusica, caminhoArquivoMusica)
+            
+            databaseArquivoMusica = os.path.join(caminhoArquivoMusica, nomeArquivoMusica)
+            arquivoMusica.save(databaseArquivoMusica)
+
+            dataAtual = date.today()
+            stringData = dataAtual.strftime('%d/%m/%y')
+
+            print(stringData)
+            print(current_user.iduser)
+
+            if not fotoMusica:
+                fotoMusica = config.Config.HTML_SOURCE_IMAGE
+                
+            nomeFoto = secure_filename(nomeMusica + os.path.splitext(arquivoMusica.filename)[1])
+            if utils.valida_arquivo(nomeFoto):
+                utils.verifica_arquivo_dupicado(nomeFoto)
+                caminhoFotoMusica = os.path.join(config.Config.UPLOAD_MUSICS, current_user.iduser, nomeFoto)
+
+                add_music(nomeMusica, current_user.iduser, stringData, databaseArquivoMusica, caminhoFotoMusica)
+
+        else:
+            flash('Extensão de arquivo não suportada\n')
+            flash(nomeArquivoMusica)
+            return redirect(url_for('innermusic'))
+
     return render_template('inner_music.html')
+

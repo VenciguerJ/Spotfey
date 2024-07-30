@@ -27,19 +27,9 @@ body{
     transition: .3s ease-in-out
 }
 
-#center-div{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    min-width: 20vw;
-    width: auto;
-    min-height: 10vh;
-    box-sizing: border-box;
-    box-shadow: 0px 1px 20px rgba(127, 255, 212, 0.473);
-    background-color:#3c4e52;
-    border-radius: 10px;
-    padding: 10px;
+.alert-danger{
+    transition: .3s ease-in-out;
+    color: rgb(218, 78, 68);
 }
 
 .link-buttom{
@@ -59,7 +49,21 @@ body{
     text-decoration: none;
 }
 
-
+#center-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-width: 20vw;
+    width: auto;
+    min-height: 10vh;
+    height: auto;
+    box-sizing: border-box;
+    box-shadow: 0px 1px 20px rgba(127, 255, 212, 0.473);
+    background-color:#3c4e52;
+    border-radius: 10px;
+    padding: 10px;
+}
 
 #content-image{
     height: 40%;
@@ -197,4 +201,39 @@ body .music-simple-div-config{
     background: rgba(88, 4, 4, 0.884) !important;
     color: aliceblue;
     transition: ease-out .3s;
+}
+
+
+/* utilitários para formulários */
+
+.label-file {
+    background-color: rgba(14, 150, 104, 0.801);
+    color: rgb(5, 32, 23);
+    width: 90%;
+    padding-left: 1%;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 5px; 
+    text-align: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+}
+
+span{
+    margin-bottom: 20px;
+    margin-left: 1vw;
+}
+
+.label-file:hover {
+    background-color: #8cceb3;
+    transition: .2s ease-in-out;
+}
+
+.input-file + span {
+    font-family: 'Mukta', sans-serif;
+    font-size: 16px;
+    color: #F1F8E8;
+    font-weight: 600;
+    text-align: center;
 }

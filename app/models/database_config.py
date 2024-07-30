@@ -27,7 +27,6 @@ def cadastra_user(username, senha, email, foto_perfil=None):
         connection.commit()
 
         resultado = 'Usuário cadastrado!'
-
     except Exception as e:
         resultado = f'Erro no cadastro do usuário: {e}'
     finally:
@@ -107,6 +106,28 @@ def get_user_ID(user):
             return None
     except Exception as e:
         return f'Erro ao validar usuário: {str(e)}'
+    finally:
+        cursor.close()
+        connection.close()
+
+# Funções de musicas 
+
+def add_music(nome, id_criador, data_criacao, caminhoarquivo, foto_musica=None):
+    try:
+        connection = connect_to_database()
+
+        cursor = connection.cursor()
+
+        if foto_musica:
+            query = 'insert into musicas (nome, id_criador, data_criacao, caminho_arquivo, foto_musica) values(%s, %i, %s, %s, %s)' (nome, id_criador, data_criacao, caminhoarquivo, foto_musica)
+            cursor.execute(query)
+        else:
+            query = 'insert into musicas (nome, id_criador, data_criacao, caminho_arquivov) values(%s, %i, %s, %s)' (nome, id_criador, data_criacao, caminhoarquivo)
+            cursor.execute(query)
+        
+        connection.commit()
+    except Exception as e:
+        print(str(e))
     finally:
         cursor.close()
         connection.close()

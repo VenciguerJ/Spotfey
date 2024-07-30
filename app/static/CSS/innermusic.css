@@ -7,6 +7,7 @@ main{
     width: 85vw;
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
 
@@ -16,7 +17,6 @@ label{
 }
 
 input[type=text]{
-    text-transform: uppercase;
     text-align: center;
     color: black;
     background-color: #95f1d6;
@@ -27,28 +27,25 @@ input[type=text]{
     margin-bottom: 20px;
     background-color: #95f1d6;
 }
+
+input[type=text]::placeholder{
+    text-transform: uppercase;
+}
+
 input[type=submit]{
     width: 90%;
 }
 
-.label-file {
-    background-color: rgba(12, 214, 147, 0.801);
-    color: rgb(5, 32, 23);
-    width: 90%;
-    padding-left: 1%;
-    font-size: 16px;
-    font-weight: 600;
-    border-radius: 5px; 
-    text-align: center;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: .5px;
-    margin-bottom: 20px;
+main img{
+    height: 90%;
 }
 
 form{
     margin: auto;
-    width: 35% !important;
+    width: 100% !important;
     height: 35vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 

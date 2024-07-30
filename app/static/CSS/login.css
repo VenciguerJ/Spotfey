@@ -174,37 +174,6 @@ label{
     left: -9999px; /* Move o input file para fora da tela */
 }
 
-/* Cria um botão estilizado */
-.label-file {
-    background-color: rgba(12, 214, 147, 0.801);
-    color: rgb(5, 32, 23);
-    padding-left: 1%;
-    font-size: 16px;
-    font-weight: 600;
-    border-radius: 5px;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: .5px;
-    margin-bottom: 20px;
-}
-
-.label-file:hover {
-    background-color: #8cceb3;
-    transition: .2s ease-in-out;
-}
-
-/* Estilo para mostrar o nome do arquivo */
-.input-file + span {
-    font-size: 16px;
-    color: #F1F8E8;
-    font-weight: 600;
-}
-
 #form-div .switch-visibility, #form-div .default-div{
     transition: .3s ease-in-out;
-}
-
-.alert-danger{
-    transition: .3s ease-in-out;
-    color: rgb(218, 78, 68);
 }

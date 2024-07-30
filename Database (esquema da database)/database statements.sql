@@ -1,6 +1,4 @@
--- users
-
-use spotfei;
+	use spotfei;
 
 create table users(
 	id int not null auto_increment,
@@ -11,6 +9,18 @@ create table users(
     primary key (id)
 );
 
+CREATE TABLE musicas (
+    id INT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    id_criador INT NOT NULL,
+    foto_musica VARCHAR(100),
+    data_criacao DATETIME NOT NULL,
+    caminho_arquivo VARCHAR(100),
+    PRIMARY KEY (id),
+    FOREIGN KEY (id_criador) REFERENCES users(id)
+);
+
+
 select * from users where username = 'teste2';
 truncate table users;
 
@@ -20,19 +30,3 @@ select * from users;
 
 select username from users where username = 'jean';
 insert into users (username, senha,foto_perfil, email) values ('teste2', 'testesenha', 'kajsdh', 'email@email.com')
-
--- musicas
-
-use spotfei;
-create table musicas(
-    id int not null auto_increment,
-    nome varchar(100) not null,
-    id_criador int not null,
-    foto_musica varchar(100),
-    data_criacao datetime not null,
-    caminho_arquivo varchar(100),
-    primary key(id),
-    foreign key(id_criador) references users(id)
-);
-
-select * from musics
