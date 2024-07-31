@@ -112,22 +112,24 @@ def get_user_ID(user):
 
 # Funções de musicas 
 
-def add_music(nome, id_criador, data_criacao, caminhoarquivo, foto_musica=None):
+def add_music(nome, id_criador, data_criacao, caminhoarquivo, foto_musica):
+    resultado = None
     try:
         connection = connect_to_database()
 
         cursor = connection.cursor()
-
-        if foto_musica:
-            query = 'insert into musicas (nome, id_criador, data_criacao, caminho_arquivo, foto_musica) values(%s, %i, %s, %s, %s)' (nome, id_criador, data_criacao, caminhoarquivo, foto_musica)
-            cursor.execute(query)
-        else:
-            query = 'insert into musicas (nome, id_criador, data_criacao, caminho_arquivov) values(%s, %i, %s, %s)' (nome, id_criador, data_criacao, caminhoarquivo)
-            cursor.execute(query)
+        query = 'insert into musicas (nome, id_criador, data_criacao, caminho_arquivo, foto_musica) values(%s, %s, %s, %s, %s)'
         
+        cursor.execute(query, (nome, id_criador, data_criacao, caminhoarquivo, foto_musica,))
+
         connection.commit()
-    except Exception as e:
-        print(str(e))
+
+        resultado = 'Musica criada com sucesso!'
+
+        return resultado
+
+    except Exception as resultado:
+        return str(resultado)
     finally:
         cursor.close()
         connection.close()

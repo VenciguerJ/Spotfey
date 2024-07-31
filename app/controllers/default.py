@@ -85,12 +85,11 @@ def register():
                 return redirect(url_for('register'))
         else:
             caminhoArquivo = str(config.DEFAULT_PROFILE_IMAGE).replace(r'\\', r"/")
-            profiledir = config.HTML_SOURCE_IMAGE
 
         # Se todas as validações passarem
         msg = cadastra_user(user, definitivePassword, email, caminhoArquivo)
         msg = str(msg)
-        return render_template('login_success.html', msg=msg, profiledir=profiledir, nome=user)
+        return render_template('login_success.html', msg=msg, profiledir=config.HTML_SOURCE_IMAGE, nome=user)
     
     return render_template('login.html')
       
@@ -135,42 +134,66 @@ def innermusic():
         if len(nomeMusica) > utils.ConstContent.MAX_CARACTERES_TEXTOS:
             flash(f'O nome "{nomeMusica}" muito grande, máximo de até 100 caracteres')
             return redirect(url_for('innermusic'))
+        if len(nomeMusica) <= 0:
+            flash('Não esqueça do nome para na sua musica!')
+            return(redirect(url_for('innermusic')))
         
         #validação dos arquivos
 
+        #cria diretório se não existir
         if not os.path.exists(os.path.join(config.Config.UPLOAD_MUSICS, current_user.username)):
             os.mkdir(os.path.join(config.Config.UPLOAD_MUSICS, current_user.username))
         
-        nomeArquivoMusica = secure_filename(nomeMusica + os.path.splitext(arquivoMusica.filename)[1])
+        # começa processo quando tiver aqrquivo da musica
+        if arquivoMusica:
+            nomeArquivoMusica = secure_filename(nomeMusica + os.path.splitext(arquivoMusica.filename)[1])
 
-        if(utils.valida_arquivo_musica(nomeArquivoMusica)):
-            caminhoArquivoMusica = os.path.join(config.Config.UPLOAD_MUSICS, current_user.username)
+            if utils.valida_arquivo_musica(nomeArquivoMusica):
+                caminhoArquivoMusica = os.path.join(config.Config.UPLOAD_MUSICS, current_user.username)
 
-            utils.verifica_arquivo_dupicado(nomeArquivoMusica, caminhoArquivoMusica)
-            
-            databaseArquivoMusica = os.path.join(caminhoArquivoMusica, nomeArquivoMusica)
-            arquivoMusica.save(databaseArquivoMusica)
-
-            dataAtual = date.today()
-            stringData = dataAtual.strftime('%d/%m/%y')
-
-            print(stringData)
-            print(current_user.iduser)
-
-            if not fotoMusica:
-                fotoMusica = config.Config.HTML_SOURCE_IMAGE
+                utils.verifica_arquivo_dupicado(nomeArquivoMusica, caminhoArquivoMusica)
                 
-            nomeFoto = secure_filename(nomeMusica + os.path.splitext(arquivoMusica.filename)[1])
-            if utils.valida_arquivo(nomeFoto):
-                utils.verifica_arquivo_dupicado(nomeFoto)
-                caminhoFotoMusica = os.path.join(config.Config.UPLOAD_MUSICS, current_user.iduser, nomeFoto)
+                #caminho do banco do arquivo mp3
+                databaseArquivoMusica = os.path.join(caminhoArquivoMusica, nomeArquivoMusica)
+                arquivoMusica.save(databaseArquivoMusica)
+                
+                #formata o dia para o banco
+                dataAtual = date.today()
+                stringData = dataAtual.strftime('%Y-%m-%d')
 
-                add_music(nomeMusica, current_user.iduser, stringData, databaseArquivoMusica, caminhoFotoMusica)
+                #começa o processo se tiver foto 
+                if fotoMusica:
+                    nomeFoto = secure_filename('IMG' + nomeMusica + os.path.splitext(fotoMusica.filename)[1])
+                    
+                    if utils.valida_arquivo(nomeFoto):
+                        utils.verifica_arquivo_dupicado(nomeFoto, os.path.join(config.Config.UPLOAD_MUSICS, current_user.username))
 
-        else:
-            flash('Extensão de arquivo não suportada\n')
-            flash(nomeArquivoMusica)
-            return redirect(url_for('innermusic'))
+                        caminhoFotoMusica = os.path.join(config.Config.UPLOAD_MUSICS, current_user.username, nomeFoto)
+
+                        fotoMusica.save(caminhoFotoMusica)
+
+                        resultado = add_music(nomeMusica, current_user.iduser, stringData, databaseArquivoMusica, caminhoFotoMusica)
+
+                        print(f'Resultado colocando foto: {resultado}')
+                        
+                        return render_template('preview_music.html', resultado=resultado, caminhoarquivo=caminhoFotoMusica)
+                    else:
+                        flash('Foto possui uma extensão de arquivo não suportada, coloque outra foto')
+                        return redirect(url_for('innermusic'))
+                #caso não tenha foto
+                else:
+                    fotoMusica = config.Config.DEFAULT_PROFILE_IMAGE
+
+                    print(fotoMusica)
+
+                    resultado = add_music(nomeMusica, current_user.iduser, stringData, databaseArquivoMusica, fotoMusica)
+                    
+                    print(f'Resultado Sem colocar foto: {resultado}')
+                        
+                    return render_template('preview_music.html', resultado=resultado, caminhoarquivo=fotoMusica)
+            else:
+                flash('Extensão de arquivo não suportada\n')
+                flash(nomeArquivoMusica)
+                return redirect(url_for('innermusic'))
 
     return render_template('inner_music.html')
-
