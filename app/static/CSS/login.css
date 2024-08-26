@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@300;500;700;800&display=swap');
+
+
+body{
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box !important;
+    display: flex;
+    justify-content: space-around;
+    color: #F1F8E8;
+    font-family:  'Mukta', sans-serif;
+}
+
+p, span{
+    font-size: 20px;
+}
+
+a, strong{
+    color: aquamarine;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
+h2{
+    font-size: 30px;
+}
+
+label{
+    font-size: 20px;
+}
+
+.hidden{
+    position: fixed;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 0;
+    height: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+#content-div, #form-div{
+    /* border: solid wheat; */
+    width: 50vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#form-div{
+    flex-direction: column;
+    justify-content: center;
+}
+.default-button{
+    background-color: rgba(12, 214, 147, 0.801) !important;
+    letter-spacing: 1.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: rgb(5, 32, 23);
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.switch-button{
+    border: none;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: .1px;
+    font-size: 15px;
+    font-weight: 800;
+    background-color: rgba(12, 214, 147, 0.801) !important;
+    margin-bottom: 4vh;
+    cursor: pointer;
+}
+
+.switch-button:hover, .default-button:hover{
+    background-color: #8cceb3 !important;
+    transition: .2s ease-in-out !important;
+
+}
+
+.default-div{
+    border-radius: 10px;
+    background-color:#3c4e52;
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    box-shadow: 0px 1px 20px rgba(127, 255, 212, 0.473);
+}
+
+.default-div h2, #content-div h1{
+    color: aquamarine;
+}
+
+.default-div form{
+    display: inherit;
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+    padding-bottom: 10px;
+    overflow: hidden !important;
+}
+
+.default-div input{
+    border-radius: 5px;
+    border: none;
+    height: 30px;
+    margin-bottom: 20px;
+    background-color: #95f1d6;
+}
+
+.default-div input::placeholder{
+    color: #000000be;
+    font-weight: 600;
+    padding-left: .3vw;
+}
+
+#content-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#content-div img{
+    width: 65%;
+    z-index: 0;
+}
+
+#content-div p{
+    z-index: 1;
+    margin-bottom: -5.5vh;
+}
+
+#content-div h1{
+    margin-bottom: -1vh;
+}
+
+#content-div p{
+    width: 80% ;
+}
+
+.switch-visibility{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#login-div h2{
+    margin: 0;  
+    padding-left: 10%;
+}
+#register-div input, label{
+    margin: .5vh !important;
+}
+
+#register-div h2{
+    margin: 0;
+    padding-left: 10%;
+}
+
+/* Esconde o input file padrão */
+#register-div input[type="file"] {
+    position: absolute;
+    left: -9999px; /* Move o input file para fora da tela */
+}
+
+#form-div .switch-visibility, #form-div .default-div{
+    transition: .2s ease-in-out;
+}
+
+
+/* painel de musicas */
+
+.music-container{
+    height: 1000px;
+    display: block;
+    width: 70%;
+    border:solid 1px;
+    
+}

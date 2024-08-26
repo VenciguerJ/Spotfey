@@ -4,12 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Successo - Spotfey</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='CSS/utils.css')}}">
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
 </head>
 <body>
-    <h1>usuário criado com Successo</h1>
-    <a href="/">Voltar ao menu</a>
-
-    <p>msg: {{ message }}</p>
-
+    <img src="../static/assets/Compose music.gif" alt="Alternative image" id="content-image">
+    <div id="center-div">
+        <h1>{{ msg }}</h1>
+        <img src="{{ url_for('static', filename=profiledir) }}" alt="Profile-Picture" class="profile-image">
+        <p>Bem vindo ao Spotfey, {{nome}}!</p>        
+    </div>
+    <a href="/register" class="link-buttom" style="margin-top: 3vh">Voltar ao Login</a>
 </body>
 </html>
