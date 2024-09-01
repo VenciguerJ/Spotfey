@@ -15,10 +15,9 @@
 <body>
     <nav class="default-menu">
         <i class="fa-solid fa-bars"></i>
-
         <ul>
-            <li class="menu-card" onclick="window.location.href='{{url_for('register')}}'">
-                <i class="fa-solid fa-user"></i>
+            <li class="menu-card js-redirect-register">
+                <i class="fa-solid fa-user js-redirect-register"></i>
                 <a href="{{url_for('register')}}" class="menu-text-card">Entrar</a>
             </li>
             <li class="menu-card">

@@ -13,11 +13,11 @@ $closeplayer = document.querySelector('.close-player');
 $player = document.querySelectorAll('.js-start-stop');
 
 // DOM menu
-
 $body = document.querySelector('body')
 $menu = document.querySelector('.default-menu');
 $menuButton = document.querySelector('.default-menu i');
-$menuCard = document.querySelectorAll('.menu-text-card')
+$menuCard = document.querySelectorAll('.menu-card')
+$menuCardText = document.querySelectorAll('.menu-text-card')
 
 //Events
 //login
@@ -52,6 +52,11 @@ for(let i=0;i<$player.length;i++){
 if($menuButton){
     $menuButton.addEventListener('click', showMenu)
 }
+if($menu){
+    for(var i=0; i< $menuCard.length;i++){
+        $menuCard[i].addEventListener('click', menu_redirect);
+    } 
+}
 
 //functions
 function updateFileName(e) {
@@ -69,27 +74,30 @@ function updateFileName(e) {
 
 function define_hidden(){
     if(($switchVisibility.length > 0) && ($form.length > 0)){
-        $switchVisibility[1].classList.add('hidden')
-        $form[1].classList.add('hidden')
+        $switchVisibility[1].classList.add('hidden');
+        $form[1].classList.add('hidden');
     }
 
     if($player.length > 0 && $player){
-        $player[0].classList.add('hidden')
+        $player[0].classList.add('hidden');
     }
 
     if($menuCard.length > 0){
-        for(let i=0;i<$menuCard.length; i++)
-        $menuCard[i].classList.add('hidden')
+        $menu.classList.add('menu-hidden');
+        for(let i=0;i<$menuCard.length; i++){
+            // $menuCard[i].classList.add('menu-hidden');
+            $menuCardText[i].classList.add('hidden');
+        }    
     }
 }
 
 function play_pause(){
     for(let i=0;i<$player.length;i++){
         if(!($player[i].classList.contains('hidden'))){
-            $player[i].classList.add('hidden')
+            $player[i].classList.add('hidden');
         }
         else{
-            $player[i].classList.remove('hidden')
+            $player[i].classList.remove('hidden');
         }
     }
 }
@@ -110,9 +118,24 @@ function switch_form(){
 
 // Funçoes do menu
 function showMenu(){
+
+    $menu.classList.contains('menu-hidden') ? $menu.classList.remove('menu-hidden') : $menu.classList.add('menu-hidden');
+    
     for(let i=0;i<$menuCard.length;i++){
-        $menuCard[i].classList.contains('hidden') ? $menuCard[i].classList.remove('hidden') : $menuCard[i].classList.add('hidden') 
+        if($menuCardText[i].classList.contains('hidden')){
+            setTimeout(function(){
+                $menuCardText[i].classList.remove('hidden')
+            }, 500);
+        }
+        else{
+            $menuCardText[i].classList.add('hidden')
+        }
     }
+}
+
+function menu_redirect(e){
+    const classPrefix = 'js-redirect-';
+    console.log(e.target.classList.contains(classPrefix+'register'))
 }
 
 //funções do player
