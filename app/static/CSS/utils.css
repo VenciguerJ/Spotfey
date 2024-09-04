@@ -6,7 +6,6 @@ body{
     /* background-color: #222831; */
     background: linear-gradient(to bottom right, #222831 69%, rgba(6, 134, 92, 0.651));
     background-size: cover;
-    background-repeat: no-repeat !important;
     width: 100vw !important;
     height: 100vh !important;
     margin: 0 !important;
@@ -16,6 +15,17 @@ body{
     color: #F1F8E8;
     font-family:  'Mukta', sans-serif !important;
     box-sizing: border-box !important;
+}
+
+h1, h2, h3, p{
+    color: #F1F8E8;
+    font-family:  'Mukta', sans-serif;
+    margin: 0;
+}
+
+a{
+    color: aquamarine;
+    text-decoration: none;
 }
 
 .hidden{
@@ -155,6 +165,7 @@ body{
 
 .menu-hidden{
     width: 4vw !important;
+    min-width: 20px;
 }
 
 body .menu-hidden{

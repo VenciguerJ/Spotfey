@@ -154,27 +154,24 @@ def verifica_musica_existente(nomeMusica):
     except Exception as e:
         print(e)
         return None 
-    
-# Funções de musicas 
 
-def add_music(nome, id_criador, data_criacao, caminhoarquivo, foto_musica):
-    resultado = None
+def return_last_music():
+    from app.controllers.config import Musica
+    query = 'SELECT * FROM musicas ORDER BY id DESC LIMIT 1'
+    conn = connect_to_database()
     try:
-        connection = connect_to_database()
-
-        cursor = connection.cursor()
-        query = 'insert into musicas (nome, id_criador, data_criacao, caminho_arquivo, foto_musica) values(%s, %s, %s, %s, %s)'
-        
-        cursor.execute(query, (nome, id_criador, data_criacao, caminhoarquivo, foto_musica,))
-
-        connection.commit()
-
-        resultado = 'Musica criada com sucesso!'
-
-        return resultado
-
-    except Exception as resultado:
-        return str(resultado)
+        cursor = conn.cursor()
+        cursor.execute(query);
+        resultado = cursor.fetchone()
+        if resultado:
+            print("passou")
+            tmpMusica = Musica(resultado[5], resultado[4], resultado[3], resultado[2], resultado[1], resultado[0])
+            return tmpMusicaw
+        else:
+            return None
+    except Exception as e:
+        return str(e)
     finally:
         cursor.close()
-        connection.close()
+        conn.close()
+        

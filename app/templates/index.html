@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="{{url_for('static', filename='CSS/utils.css')}}"> 
     <link rel="shortcut icon" type="imagex/png" href="../static/assets/imagem de música.ico">
 </head>
-
 <body>
     <nav class="default-menu">
         <i class="fa-solid fa-bars"></i>
@@ -20,21 +19,20 @@
                 <i class="fa-solid fa-user js-redirect-register"></i>
                 <a href="{{url_for('register')}}" class="menu-text-card">Entrar</a>
             </li>
-            <li class="menu-card">
-                <i class="fa-solid fa-music"></i>
+            <li class="menu-card js-redirect-innermusic">
+                <i class="fa-solid fa-music js-redirect-innermusic"></i>
                 <a href="{{url_for('innermusic')}}" class="menu-text-card">Lançar musica</a>
             </li>
-            <li class="menu-card">
-                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <li class="menu-card js-redirect-logout">
+                <i class="fa-solid fa-arrow-right-from-bracket js-redirect-logout"></i>
                 <a href="{{url_for('logout')}}" class="menu-text-card">Sair</a>
             </li>
         </ul>
     </nav>
     <header>
         <h1 id="main-tittle">Spotfeys</h1>
-        <!-- colocar uma barra de pesquisa -->    
-    </header>
         <h3>{{ current_username }}</h3>
+    </header>
     <!-- player -->
     <div class="music-simple-div hidden">
         <div class="music-simple-div-info">

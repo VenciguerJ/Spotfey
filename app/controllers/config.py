@@ -47,3 +47,16 @@ class User(UserMixin):
             return user_data
         
         return None
+    
+class Musica():
+    def __init__(self, caminhoarquivo, datacriacao, foto_musica, id_criador, nome, id=None):
+        
+        if id<=0:
+            self.Id = id
+        else:
+            raise ValueError("Não Existe id igual ou menor que zero")
+        self.CaminhoArquivo = caminhoarquivo
+        self.DataCriacao = datacriacao
+        self.foto_musica = foto_musica
+        self.IdCriador = id_criador
+        self.Nome = nome

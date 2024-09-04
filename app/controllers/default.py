@@ -16,6 +16,11 @@ def load_user(user_id):
 #ROTAS
 @app.route("/")
 def index():
+    from app.controllers.config import Musica
+    from app.models.database_config import return_last_music
+
+    ultimaMusica = return_last_music()
+    print(ultimaMusica.Nome)
     if current_user.is_authenticated:
         current_username = current_user.username
         return render_template('index.html', current_username = current_username)    

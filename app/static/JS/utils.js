@@ -134,8 +134,19 @@ function showMenu(){
 }
 
 function menu_redirect(e){
-    const classPrefix = 'js-redirect-';
-    console.log(e.target.classList.contains(classPrefix+'register'))
+    console.log(e.target.classList)
+    if(e.target.classList.contains('js-redirect-register')){
+        window.location.href = '/register';
+    }
+    if(e.target.classList.contains('js-redirect-innermusic')){
+        window.location.href = '/innermusic';
+    }
+    if(e.target.classList.contains('js-redirect-logout')){
+        window.location.href = '/logout';
+    }
+    if(e.target.classList.contains('js-redirect-home')){
+        window.location.href = '/';
+    }
 }
 
 //funções do player
