@@ -1,0 +1,100 @@
+/*
+------------------------------------------------------
+| Elemento           | Cor               | Hex       |
+| ------------------ | ----------------- | --------- |
+| Fundo do menu      | Roxo escuro       | `#1E003E` |
+| Botões / Destaques | Coral vibrante    | `#FF6F61` |
+| Fundo da página    | Cinza quase preto | `#121212` |
+| Texto principal    | Branco            | `#FFFFFF` |
+| Texto secundário   | Cinza claro       | `#B3B3B3` |
+------------------------------------------------------
+*/
+
+
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    right: 0;
+    margin-bottom: 60px;
+    background-color: #121212;
+    color: #fff;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+header {
+    height: 100vh;
+    width: 13vw;
+    box-sizing: border-box;
+    position: fixed;
+}
+
+.mainContent {
+    border: solid;
+    position: absolute;
+    width: 83vw;
+    right:2vw;
+}
+
+footer {
+    width: 86vw !important;
+    right: 0
+}   
+
+.sidebar {
+    background-color: #1E003E;
+    min-height: 100vh;
+    padding: 20px
+}
+
+    .sidebar h1 {
+        color: #FF6F61;
+        font-size: 24px;
+        margin-bottom: 40px;
+    }
+
+    .sidebar .nav-link {
+        color: #B3B3B3;
+        margin-bottom: 15px;
+        transition: color 0.3s;
+    }
+
+        .sidebar .nav-link:hover {
+            color: #FF6F61;
+        }
+
+.playlist-card {
+    background-color: #1E003E;
+    border: none;
+    border-radius: 12px;
+    transition: background 0.3s;
+}
+
+    .playlist-card:hover {
+        background-color: #2a005c;
+    }
+
+.playlist-title {
+    color: #FF6F61;
+}
+
+.text-muted-custom {
+    color: #B3B3B3 !important;
+}
